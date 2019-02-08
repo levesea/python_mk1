@@ -1,46 +1,19 @@
-"""
-Definition of views.
-"""
-
 from django.shortcuts import render
-from django.http import HttpRequest
-from django.template import RequestContext
+from django.http import HttpResponse
 from datetime import datetime
 
-def home(request):
-    """Renders the home page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/index.html',
-        {
-            'title':'Home Page',
-            'year':datetime.now().year,
-        }
-    )
 
-def contact(request):
-    """Renders the contact page."""
-    assert isinstance(request, HttpRequest)
-    return render(
-        request,
-        'app/contact.html',
-        {
-            'title':'Contact',
-            'message':'Your contact page.',
-            'year':datetime.now().year,
-        }
-    )
+def index(request):
+    now = datetime.now() 
+
+    return render(request, "app/index.html",{'content':'index에들어갈 content입니다.' + now.strftime("%A, %d %B, %Y at %X")})
 
 def about(request):
-    """Renders the about page."""
-    assert isinstance(request, HttpRequest)
     return render(
         request,
-        'app/about.html',
+        "app/about.html",
         {
-            'title':'About',
-            'message':'Your application description page.',
-            'year':datetime.now().year,
+            'title' : "About 용 title입니다.",
+            'content' : "about용content입니다."
         }
-    )
+    )    
